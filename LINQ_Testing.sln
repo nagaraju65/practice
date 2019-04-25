@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ_Testing", "LINQ_Testing\LINQ_Testing.csproj", "{85073696-C640-4C42-B758-885678485961}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars", "Cars\Cars.csproj", "{AC556BA4-9AA4-40E4-9C69-1938023737EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{85073696-C640-4C42-B758-885678485961}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85073696-C640-4C42-B758-885678485961}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85073696-C640-4C42-B758-885678485961}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC556BA4-9AA4-40E4-9C69-1938023737EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC556BA4-9AA4-40E4-9C69-1938023737EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC556BA4-9AA4-40E4-9C69-1938023737EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC556BA4-9AA4-40E4-9C69-1938023737EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
