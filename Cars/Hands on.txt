@@ -1,0 +1,2 @@
+1.Try the LINQ with query syntax
+2.Try ParseStringtoCar method in CAR class
