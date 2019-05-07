@@ -11,14 +11,32 @@ namespace Cars
     {
         static void Main(string[] args)
         {
-            var source = ProcessCSV("fuel.csv");
-            foreach (var car in source)
+            var Cars = ProcessCars("fuel.csv");
+            var Manufacturers = ProcessManufacturers("manufacturers.csv");
+            foreach (var Manufacturer in Manufacturers)
             {
-                Console.WriteLine(car.Division);
+                Console.WriteLine($"{Manufacturer.Name} : {Manufacturer.HeadQuarter}");
             }
+
+            //foreach (var car in Cars)
+            //{
+            //    Console.WriteLine(car.Division);
+            //}
         }
 
-        private static List<Car> ProcessCSV(string path)
+        private static List<Manufacturer> ProcessManufacturers(string path)
+        {
+            var Query = File.ReadAllLines(path)
+                            .Where(line => line.Length > 1)
+                            .Select(Manufacturer.ConvertLineToManufacturer);
+                            //.OrderBy(m => m.Name);
+
+            return Query.ToList();
+
+            
+        }
+
+        private static List<Car> ProcessCars(string path)
         {
             var query = File.ReadAllLines(path)
                             .Skip(1)
