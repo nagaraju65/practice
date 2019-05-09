@@ -41,8 +41,9 @@ namespace Cars
 
         private static void InsertCarsintoSQL_UsingEntityFramework(List<Car> cars)
         {
-           // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarDB>());
+            
             var db = new CarDB();
+
             if (!db.cars.Any())
             {
                 foreach (var car in cars)
@@ -52,6 +53,23 @@ namespace Cars
 
                 db.SaveChanges();
             }
+
+            //if (db.Database.Exists())
+            //{
+            //    if (!db.cars.Any())
+            //    {
+            //        foreach (var car in cars)
+            //        {
+            //            db.cars.Add(car);
+            //        }
+
+            //        db.SaveChanges();
+            //    }
+            //}
+            //else
+            //{
+            //   db.cars.Create();
+            //}
         }
 
         private static void Aggregations_UsingAggregateMethod(List<Car> cars)

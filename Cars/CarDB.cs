@@ -9,7 +9,10 @@ namespace Cars
 {
     public class CarDB : DbContext
     {
-       
+        public CarDB() : base()
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarDB>());
+        }
         public DbSet<Car> cars { get; set; }
     }
 }
