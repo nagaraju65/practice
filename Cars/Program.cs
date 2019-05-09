@@ -20,7 +20,7 @@ namespace Cars
 
         private static void ExecuteFunctionality(List<Car> cars, List<Manufacturer> manufacturers)
         {
-            InsertCarsintoSQL_UsingEntityFramework(cars);
+            InsertCarsintoSQL_UsingEntityFramework(cars, manufacturers);
 
             #region Methods
             /*
@@ -39,9 +39,9 @@ namespace Cars
 
         }
 
-        private static void InsertCarsintoSQL_UsingEntityFramework(List<Car> cars)
+        private static void InsertCarsintoSQL_UsingEntityFramework(List<Car> cars, List<Manufacturer> manufacturers)
         {
-            
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarDB>());
             var db = new CarDB();
 
             if (!db.cars.Any())
@@ -54,6 +54,22 @@ namespace Cars
                 db.SaveChanges();
             }
 
+            Console.WriteLine("Cars DB created and cars are populated");
+            var db_M = new ManufacturersDB();
+
+            if (!db_M.Manufacturers.Any())
+            {
+                foreach (var manufacturer in manufacturers)
+                {
+                    db_M.Manufacturers.Add(manufacturer);
+                }
+
+                db_M.SaveChanges();
+            }
+
+            Console.WriteLine("Manufacturers DB created and Manufacturers are populated");
+
+            Console.ReadLine();
             //if (db.Database.Exists())
             //{
             //    if (!db.cars.Any())

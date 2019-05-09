@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="CarDB.cs" />
     <Compile Include="Manufacturer.cs" />
+    <Compile Include="Manufacturers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
