@@ -8,6 +8,7 @@ namespace Cars
 {
     public class Car
     {
+        public int Id { get; set; }
         public string Model_Year { get; set;}
         public string Division{get; set;}
         public string Carline{get; set;}

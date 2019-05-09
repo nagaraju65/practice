@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,9 @@ namespace Cars
 
         private static void ExecuteFunctionality(List<Car> cars, List<Manufacturer> manufacturers)
         {
-            Aggregations_UsingAggregateMethod(cars);
-            //Aggreation_On_Cars(cars);
+            InsertCarsintoSQL_UsingEntityFramework(cars);
 
+            #region Methods
             /*
             ShowCars(cars);
             ShowManufacturers(manufacturers);
@@ -31,8 +32,26 @@ namespace Cars
             GroupbyManufacturer_OrderbyCountry(cars, manufacturers);
             GroupingCarsbyManufacturer_UsingGroupJoin(cars, manufacturers);
             FirstThreeEfficientCars_UsingGroupJoin_and_SelectMany(cars, manufacturers);
-             Aggreation_On_Cars(cars);
+            Aggreation_On_Cars(cars);
+            Aggregations_UsingAggregateMethod(cars);
             */
+            #endregion
+
+        }
+
+        private static void InsertCarsintoSQL_UsingEntityFramework(List<Car> cars)
+        {
+           // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarDB>());
+            var db = new CarDB();
+            if (!db.cars.Any())
+            {
+                foreach (var car in cars)
+                {
+                    db.cars.Add(car);
+                }
+
+                db.SaveChanges();
+            }
         }
 
         private static void Aggregations_UsingAggregateMethod(List<Car> cars)
