@@ -20,7 +20,7 @@ namespace Cars
 
         private static void ExecuteFunctionality(List<Car> cars, List<Manufacturer> manufacturers)
         {
-            InsertCarsintoSQL_UsingEntityFramework(cars, manufacturers);
+            QueryingFromDB_UsingEF();
 
             #region Methods
             /*
@@ -34,16 +34,39 @@ namespace Cars
             FirstThreeEfficientCars_UsingGroupJoin_and_SelectMany(cars, manufacturers);
             Aggreation_On_Cars(cars);
             Aggregations_UsingAggregateMethod(cars);
+            InsertCarsintoSQL_UsingEntityFramework(cars, manufacturers);
+            QueryingFromDB_UsingEF();
+            
             */
             #endregion
 
+        }
+
+        private static void QueryingFromDB_UsingEF()
+        {
+            var db = new CarDB();
+            db.Database.Log = Console.WriteLine;
+
+            //var query = from car in db.cars
+            //            orderby car.FE_Comb descending, car.Carline ascending
+            //            select car;
+
+            var query2 = db.cars.OrderByDescending(c => c.FE_Comb)
+                                .ThenBy(c => c.Carline)
+                                .ToList()
+                                .Take(10);
+
+            foreach (var car in query2)
+            {
+                Console.WriteLine($"{car.Carline} : {car.FE_Comb}");
+            }
         }
 
         private static void InsertCarsintoSQL_UsingEntityFramework(List<Car> cars, List<Manufacturer> manufacturers)
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarDB>());
             var db = new CarDB();
-
+            //db.Database.Log = Console.WriteLine;
             if (!db.cars.Any())
             {
                 foreach (var car in cars)
@@ -70,22 +93,7 @@ namespace Cars
             Console.WriteLine("Manufacturers DB created and Manufacturers are populated");
 
             Console.ReadLine();
-            //if (db.Database.Exists())
-            //{
-            //    if (!db.cars.Any())
-            //    {
-            //        foreach (var car in cars)
-            //        {
-            //            db.cars.Add(car);
-            //        }
-
-            //        db.SaveChanges();
-            //    }
-            //}
-            //else
-            //{
-            //   db.cars.Create();
-            //}
+            
         }
 
         private static void Aggregations_UsingAggregateMethod(List<Car> cars)
